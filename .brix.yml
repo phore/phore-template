@@ -1,0 +1,12 @@
+version: '1.0'
+coder:
+    exampleDir: ~
+    # Replace Example Dir wit relative path e.g. ./examples/ to benefit from brixcoder code completion
+    include:
+        - ./README.md
+        - ./src/
+        - ./.brix-job/
+        - "/test/"
+    exclude:
+        - ./vendor/
+        - ./node_modules
