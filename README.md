@@ -8,15 +8,22 @@
 
 ## Template Syntax
 
+- `ifdef` - If the variable is defined
+- `ifndef` - If the variable is not defined
+- `for` - Loop through the list
+
 ```text
 
 # Normal Variable substitution
 Hello {{ name }}!
 
-{% if city %}
+{% ifdef city %}
   Your city is {{ city }}.
 {% endif %}
 
+{% ifndef city %}
+  Your city is {{ city }}.
+{% endif %}
 
 {% for cityList as city %}
   {{ city }}
