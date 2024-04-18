@@ -9,10 +9,10 @@ class ValueInjectParserTest extends TestCase
     {
         $filters = [];
         $parser = new ValueInjectParser($filters);
-        $content = '{{ name }}';
+        $content = '{{ name }} test';
         $scope = ['name' => 'John'];
         $result = $parser->parse($content, $scope);
-        $this->assertEquals('John', $result);
+        $this->assertEquals('John test', $result);
     }
 }
 ?>
