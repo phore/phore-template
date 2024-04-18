@@ -1,6 +1,9 @@
 <?php
 
-namespace Phore\Template;
+namespace Phore\Template\Parser;
+
+use Phore\Template\TemplateFilter;
+use Phore\Template\TemplateOptions;
 
 class PhoreTemplateParser
 {

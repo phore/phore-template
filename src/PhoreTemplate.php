@@ -7,7 +7,23 @@ namespace Phore\Template;
 
 class PhoreTemplate
 {
-    
+
+    /**
+     * @var TemplateFilter[]
+     */
+    private static $filters = [];
+
+    public static function registerFilter(TemplateFilter $filter)
+    {
+        self::$filters[$filter->getName()] = $filter;
+    }
+
+    public static function getFilterByName(string $filterName) : ?TemplateFilter
+    {
+        return self::$filters[$filterName] ?? null;
+    }
+
+
     public function __construct(
         protected ?string $templateString = null,
         protected ?string $templateFile = null,
@@ -33,7 +49,13 @@ class PhoreTemplate
     }
 
 
-    public function parse() {
+
+    public function parse(array $scope = []) {
+        $content = $this->getOriginalContent();
+
+        $parser = new PhoreTemplateParser(explode("\n", $content));
+
+
 
     }
 

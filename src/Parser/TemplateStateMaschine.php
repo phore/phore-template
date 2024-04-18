@@ -1,6 +1,6 @@
 <?php
 
-namespace Phore\Template;
+namespace Phore\Template\Parser;
 
 class TemplateStateMaschine
 {

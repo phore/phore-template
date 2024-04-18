@@ -2,6 +2,9 @@
 
 namespace Phore\Template;
 
+
+use Phore\Template\Pipe\NextFilter;
+
 interface TemplateFilter
 {
 
@@ -21,6 +24,6 @@ interface TemplateFilter
      */
     public function setArguments(array $arguemnts);
 
-    public function filter(string $data, TemplateFilter $next): string;
+    public function filter(string $data, NextFilter $next): string;
 
 }
