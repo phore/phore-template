@@ -1,5 +1,5 @@
 <?php
-namespace Phore\test;
+namespace Phore\test\Unit;
 use Phore\Template\Parser\ValueInjectParser;
 use PHPUnit\Framework\TestCase;
 
@@ -14,5 +14,16 @@ class ValueInjectParserTest extends TestCase
         $result = $parser->parse($content, $scope);
         $this->assertEquals('John test', $result);
     }
+
+    public function testMultiparse()
+    {
+        $filters = [];
+        $parser = new ValueInjectParser($filters);
+        $content = 'Mr {{ name }} is {{ age }} years';
+        $scope = ['name' => 'John', "age"=> 20];
+        $result = $parser->parse($content, $scope);
+        $this->assertEquals('Mr John is 20 years', $result);
+    }
+
 }
 ?>

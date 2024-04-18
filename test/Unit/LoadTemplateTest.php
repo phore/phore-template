@@ -1,6 +1,6 @@
 <?php
 
-namespace Phore\test;
+namespace Phore\test\Unit;
 
 class LoadTemplateTest extends \PHPUnit\Framework\TestCase
 {

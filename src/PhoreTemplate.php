@@ -5,6 +5,8 @@ namespace Phore\Template;
 
 
 
+use Phore\Template\Parser\ValueInjectParser;
+
 class PhoreTemplate
 {
 
@@ -50,20 +52,13 @@ class PhoreTemplate
 
 
 
-    public function parse(array $scope = []) {
+    public function render(array $scope = null) : string {
+        if ($scope === null)
+            $scope = $this->data;
         $content = $this->getOriginalContent();
 
-        $parser = new PhoreTemplateParser(explode("\n", $content));
-
-
-
+        $parser = new ValueInjectParser(self::$filters);
+        return $parser->parse($content, $scope);
     }
-
-
-
-
-
-
-
 
 }

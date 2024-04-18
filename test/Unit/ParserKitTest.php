@@ -1,5 +1,5 @@
 <?php
-namespace Phore\test;
+namespace Phore\test\Unit;
 use Phore\Template\Parser\Helper\ObjectType;
 use Phore\Template\Parser\Helper\ObjectTypeTypeEnum;
 use Phore\Template\Parser\Helper\ParserKit;
