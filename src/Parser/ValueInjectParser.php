@@ -45,6 +45,7 @@ class ValueInjectParser
         $output = ParserKit::ReadUntilToken($content, ["{{"]);
 
 
+
         if ($content === "")
             return $output; // No token found
 

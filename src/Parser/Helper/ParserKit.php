@@ -1,6 +1,5 @@
 <?php
 namespace Phore\Template\Parser\Helper;
-
 class ParserKit
 {
     public static function ReadObject(string &$input) : ObjectType {
@@ -40,23 +39,31 @@ class ParserKit
                     continue;
                 }
             }
-
             if ($insideString) {
                 $objectValue .= $char;
                 continue;
             }
         }
         $input = substr($input, $i+1);
-
         if ($wasString && $insideString)
             throw new \InvalidArgumentException("Unterminated string in input: '$input' in position $i.");
-
         return new ObjectType(ObjectTypeTypeEnum::STRING, $objectValue);
     }
     public static function ReadUntilToken(string &$input, array $allowedTokens) : string {
-        $pos = strcspn($input, implode('', $allowedTokens));
-        $result = substr($input, 0, $pos);
-        $input = substr($input, $pos);
+        $pos = 0;
+        $tokenLengths = array_map('strlen', $allowedTokens);
+        while ($pos < strlen($input)) {
+            foreach ($allowedTokens as $index => $token) {
+                if (substr($input, $pos, $tokenLengths[$index]) === $token) {
+                    $result = substr($input, 0, $pos);
+                    $input = substr($input, $pos);
+                    return $result;
+                }
+            }
+            $pos++;
+        }
+        $result = $input;
+        $input = ""; // No token found
         return $result;
     }
     public static function ReadToken(string &$input, array $allowedTokens) : string {
@@ -73,7 +80,6 @@ class ParserKit
         $input = substr($input, 1);
         return $char;
     }
-
     public static function ReadWhitespace(&$input) : ?string {
         $length = strlen($input);
         $whitespace = '';
@@ -87,9 +93,7 @@ class ParserKit
         $input = substr($input, $i);
         return $whitespace;
     }
-
     public static function IsNextCharAlphabetic(string $input) : bool {
-        return preg_match('/[a-zA-Z]/', $input[0]) === 1;
+        return preg_match('/^[a-zA-Z]/', $input[0]) === 1;
     }
-
 }

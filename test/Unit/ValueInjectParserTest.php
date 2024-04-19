@@ -5,6 +5,15 @@ use PHPUnit\Framework\TestCase;
 
 class ValueInjectParserTest extends TestCase
 {
+    public function testSingleTokenParse()
+    {
+        $filters = [];
+        $parser = new ValueInjectParser($filters);
+        $content = '{} test';
+        $scope = ['name' => 'John'];
+        $result = $parser->parse($content, $scope);
+        $this->assertEquals('{} test', $result);
+    }
     public function testParse()
     {
         $filters = [];
@@ -14,6 +23,8 @@ class ValueInjectParserTest extends TestCase
         $result = $parser->parse($content, $scope);
         $this->assertEquals('John test', $result);
     }
+
+
 
     public function testMultiparse()
     {

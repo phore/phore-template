@@ -4,7 +4,6 @@ use Phore\Template\Parser\Helper\ObjectType;
 use Phore\Template\Parser\Helper\ObjectTypeTypeEnum;
 use Phore\Template\Parser\Helper\ParserKit;
 use PHPUnit\Framework\TestCase;
-
 class ParserKitTest extends TestCase
 {
     public function testReadObject()
@@ -28,10 +27,19 @@ class ParserKitTest extends TestCase
     public function testReadUntilToken()
     {
         $input = "hello, world";
-        $result = ParserKit::ReadUntilToken($input, [',']);
+        $result = ParserKit::ReadUntilToken($input, [',', ' ']);
         $this->assertEquals('hello', $result);
         $this->assertEquals(', world', $input);
     }
+
+    public function testReadUntilTokenMultiCharCenterOfText()
+    {
+        $input = "abc {{ world";
+        $result = ParserKit::ReadUntilToken($input, ['{{']);
+        $this->assertEquals('abc ', $result);
+        $this->assertEquals('{{hello}} world', $input);
+    }
+
     public function testReadToken()
     {
         $input = ", world";
@@ -39,5 +47,23 @@ class ParserKitTest extends TestCase
         $this->assertEquals(',', $token);
         $this->assertEquals(' world', $input);
     }
+
+    public function testReadTokenMulti()
+    {
+        $input = "{{ world";
+        $token = ParserKit::ReadToken($input, ['{{']);
+        $this->assertEquals('{{', $token);
+        $this->assertEquals(' world', $input);
+    }
+
+    public function testReadUntilTokenMultiChar()
+    {
+        $input = "{{hello}} world";
+        $result = ParserKit::ReadUntilToken($input, ['{{']);
+        $this->assertEquals('', $result);
+        $this->assertEquals('{{hello}} world', $input);
+    }
+
+
 }
 ?>
