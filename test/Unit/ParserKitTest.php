@@ -37,7 +37,7 @@ class ParserKitTest extends TestCase
         $input = "abc {{ world";
         $result = ParserKit::ReadUntilToken($input, ['{{']);
         $this->assertEquals('abc ', $result);
-        $this->assertEquals('{{hello}} world', $input);
+        $this->assertEquals('{{ world', $input);
     }
 
     public function testReadToken()
