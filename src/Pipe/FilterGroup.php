@@ -17,7 +17,7 @@ class FilterGroup
         $this->filterPipeline[] = $filter;
     }
 
-    public function perform($value, int $depth = 0) : string
+    public function perform($value, int $depth = 0) : string|null
     {
         if ($depth > count($this->filterPipeline) - 1)
             return $value;

@@ -17,7 +17,7 @@ class TemplateTest extends TestCase
      public function testLoadHtml() {
 
         $expected = phore_file(__DIR__ . "/../mock/demo1.expected.txt")->get_contents();
-        $out = phore_template_file(__DIR__ . "/../mock/demo1.input.html", ["js" => "some code"])->render();
+        $out = phore_template_file(__DIR__ . "/../mock/demo1.input.html", ["js" => "some code", "name" => "john"])->render();
         $this->assertEquals($expected, $out);
     }
 }
