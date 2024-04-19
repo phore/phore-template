@@ -14,4 +14,10 @@ class TemplateTest extends TestCase
         $this->assertEquals("Name: John\n", $out);
     }
 
+     public function testLoadHtml() {
+
+        $expected = phore_file(__DIR__ . "/../mock/demo1.expected.txt")->get_contents();
+        $out = phore_template_file(__DIR__ . "/../mock/demo1.input.html", ["js" => "some code"])->render();
+        $this->assertEquals($expected, $out);
+    }
 }

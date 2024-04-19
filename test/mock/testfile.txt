@@ -1,2 +1,1 @@
-Title {{ name }}
 Name: {{ name }}

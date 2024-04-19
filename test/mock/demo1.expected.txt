@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <script>some code</script>
+</head>
+<body>
+<div class="login-container">
+    <div class="logo">
+        <img src="vendor-logo.png" alt="Vendor Logo">
+    </div>
+    <h1>Login</h1>
+    <form id="loginForm">
+        <div class="input-group">
+            <input type="email" id="email" name="email" placeholder="E-Mail Adresse" required>
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" name="password" placeholder="Passwort" required>
+        </div>
+        <div class="error-box" id="errorBox" style="display: none;">
+            <!-- Fehlermeldungen werden hier angezeigt -->
+        </div>
+        <button type="submit">Anmelden</button>
+        <a href="#" class="forgot-password">Passwort zusenden</a>
+    </form>
+</div>
+</body>
+</html>
