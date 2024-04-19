@@ -29,11 +29,8 @@ class ValueInjectParser
         $name = ParserKit::ReadUntilToken($content, ["|", "}}", " "]);
         $args = [];
         ParserKit::ReadWhitespace($content);
-        echo "content: $content\n";
         while (ParserKit::IsNextCharAlphabetic($content)) {
             $argName = ParserKit::ReadObject($content);
-            echo $content;
-            print_r ($argName);
             $arg = ParserKit::ReadChar($content);
             if ($arg !== "=")
                 throw new \InvalidArgumentException("Expected '=' after argument name '{$argName->value}' in function call");
